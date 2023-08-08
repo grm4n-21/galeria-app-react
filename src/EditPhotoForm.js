@@ -14,7 +14,8 @@ const EditPhotoForm = ({ photo, onSaveEdit, onClose }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSaveEdit(photo.id, title, description);
+    const editedPhoto = { ...photo, title, description };
+    onSaveEdit(editedPhoto);
     onClose();
   };
 

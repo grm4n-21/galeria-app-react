@@ -19,15 +19,17 @@ const AddPhotoForm = ({ onAddPhoto }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onAddPhoto(title, description, image);
-    setTitle('');
-    setDescription('');
-    setImage(null);
+    if (image) {
+      onAddPhoto(title, description, image);
+      setTitle('');
+      setDescription('');
+      setImage(null);
+    }
   };
 
   return (
-    <div className="add-photo">
-      <h2 className="text-2xl font-bold mb-2">Agregar Foto</h2>
+    <div>
+      <h2 className="text-2xl font-bold mb-2">Agregar Nueva Foto</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-2">
           <label htmlFor="title">Título:</label>
@@ -51,7 +53,7 @@ const AddPhotoForm = ({ onAddPhoto }) => {
           />
         </div>
         <div className="mb-2">
-          <label htmlFor="image">Seleccionar imagen:</label>
+          <label htmlFor="image">Imagen:</label>
           <input
             type="file"
             id="image"
@@ -63,9 +65,9 @@ const AddPhotoForm = ({ onAddPhoto }) => {
         </div>
         <button
           type="submit"
-          className="btn-agregar bg-blue-500 text-white rounded px-4 py-2"
+          className="bg-blue-500 text-white rounded px-4 py-2"
         >
-          Agregar
+          Agregar Foto
         </button>
       </form>
     </div>

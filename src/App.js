@@ -8,7 +8,6 @@ function App() {
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [editPhoto, setEditPhoto] = useState({ id: '', title: '', description: '' });
 
-  // Agregar nueva foto a la galería
   const addPhoto = (title, description, image) => {
     const reader = new FileReader();
 
@@ -27,31 +26,26 @@ function App() {
     reader.readAsDataURL(image);
   };
 
-  // Eliminar foto de la galería
   const deletePhoto = (photoId) => {
-    setPhotos(photos.filter((photo) => photo.id !== photoId));
+    const updatedPhotos = photos.filter((photo) => photo.id !== photoId);
+    setPhotos(updatedPhotos);
   };
 
-  // Mostrar formulario de edición
   const showEditForm = (photoId, title, description) => {
     setEditPhoto({ id: photoId, title: title, description: description });
     setEditModalVisible(true);
   };
 
-  // Ocultar formulario de edición
   const hideEditForm = () => {
     setEditModalVisible(false);
   };
 
-  // Guardar cambios después de editar
   const saveEdit = (editedPhoto) => {
-    setPhotos((prevPhotos) =>
-      prevPhotos.map((photo) =>
-        photo.id === editedPhoto.id ? editedPhoto : photo
-      )
+    const updatedPhotos = photos.map((photo) =>
+      photo.id === editedPhoto.id ? editedPhoto : photo
     );
-
-    hideEditForm();
+    setPhotos(updatedPhotos);
+    setEditModalVisible(false);
   };
 
   return (
@@ -63,11 +57,7 @@ function App() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
         <div className="md:col-span-2 bg-gray-100 p-4 rounded-lg shadow-md">
-          <PhotoGallery
-            photos={photos}
-            onDeletePhoto={deletePhoto}
-            onEditPhoto={showEditForm}
-          />
+          <PhotoGallery photos={photos} onDelete={deletePhoto} onEdit={showEditForm} />
         </div>
         <div className="bg-gray-100 p-4 rounded-lg shadow-md">
           <AddPhotoForm onAddPhoto={addPhoto} />
@@ -79,7 +69,7 @@ function App() {
           <EditPhotoForm
             photo={editPhoto}
             onSaveEdit={saveEdit}
-            onCancelEdit={hideEditForm}
+            onClose={hideEditForm}
           />
         </div>
       )}

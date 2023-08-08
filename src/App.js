@@ -55,27 +55,33 @@ function App() {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="bg-white min-h-screen">
       <header className="bg-blue-500 text-white p-4 text-center">
         <h1 className="text-4xl font-bold mb-2">Galería de Fotos</h1>
         <h3 className="text-xl">Bienvenido a nuestra galería de fotos</h3>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <AddPhotoForm onAddPhoto={addPhoto} />
-        <PhotoGallery
-          photos={photos}
-          onDeletePhoto={deletePhoto}
-          onEditPhoto={showEditForm}
-        />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+        <div className="md:col-span-2 bg-gray-100 p-4 rounded-lg shadow-md">
+          <PhotoGallery
+            photos={photos}
+            onDeletePhoto={deletePhoto}
+            onEditPhoto={showEditForm}
+          />
+        </div>
+        <div className="bg-gray-100 p-4 rounded-lg shadow-md">
+          <AddPhotoForm onAddPhoto={addPhoto} />
+        </div>
       </div>
 
       {editModalVisible && (
-        <EditPhotoForm
-          photo={editPhoto}
-          onSaveEdit={saveEdit}
-          onCancelEdit={hideEditForm}
-        />
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <EditPhotoForm
+            photo={editPhoto}
+            onSaveEdit={saveEdit}
+            onCancelEdit={hideEditForm}
+          />
+        </div>
       )}
 
       <footer className="mt-6 bg-gray-200 p-2 text-center">

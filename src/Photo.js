@@ -26,7 +26,7 @@ const Photo = ({ photo, onDelete, onEdit }) => {
         <div className="edit-delete-buttons absolute top-2 right-2">
           <button
             className="edit-button bg-blue-500 text-white px-2 py-1 rounded"
-            onClick={() => onEdit(photo.id, photo.title, photo.description)}
+            onClick={() => onEdit(photo)}
           >
             Editar
           </button>

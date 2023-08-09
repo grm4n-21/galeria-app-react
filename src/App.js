@@ -31,8 +31,8 @@ function App() {
     setPhotos(updatedPhotos);
   };
 
-  const showEditForm = (photoId, title, description) => {
-    setEditPhoto({ id: photoId, title: title, description: description });
+  const showEditForm = (photo) => {
+    setEditPhoto(photo);
     setEditModalVisible(true);
   };
 
@@ -41,6 +41,7 @@ function App() {
   };
 
   const saveEdit = (editedPhoto) => {
+    console.log(editPhoto)
     const updatedPhotos = photos.map((photo) =>
       photo.id === editedPhoto.id ? editedPhoto : photo
     );

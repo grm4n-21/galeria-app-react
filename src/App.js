@@ -20,6 +20,7 @@ function App() {
         image: e.target.result,
       };
 
+      
       setPhotos([...photos, newPhoto]);
     };
 

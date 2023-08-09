@@ -10,7 +10,8 @@ const Photo = ({ photo, onDelete, onEdit }) => {
   const handleMouseLeave = () => {
     setHovered(false);
   };
-
+  
+  
   return (
     <div
       className="img-container relative"

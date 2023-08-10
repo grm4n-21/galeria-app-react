@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PhotoGallery from './PhotoGallery';
 import AddPhotoForm from './AddPhotoForm';
 import EditPhotoForm from './EditPhotoForm';
+import { Container, Typography, Grid, Box } from '@mui/material';
 
 function App() {
   const [photos, setPhotos] = useState([]);
@@ -51,36 +52,55 @@ function App() {
   };
 
   return (
-    <div className="bg-white min-h-screen">
-      <header className="bg-blue-500 text-white p-4 text-center">
-        <h1 className="text-4xl font-bold mb-2">Galería de Fotos</h1>
-        <h3 className="text-xl">Bienvenido a nuestra galería de fotos</h3>
-      </header>
+    <Container>
+      <Box bgcolor="white" minHeight="100vh">
+        <Box bgcolor="blue" color="white" p={4} textAlign="center">
+          <Typography variant="h4" fontWeight="bold" mb={2} >
+            Galería de Fotos
+          </Typography>
+          <Typography variant="h6" mb={2}>
+            Bienvenido a nuestra galería de fotos
+          </Typography>
+        </Box>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-        <div className="md:col-span-2 bg-gray-100 p-4 rounded-lg shadow-md">
-          <PhotoGallery photos={photos} onDelete={deletePhoto} onEdit={showEditForm} />
-        </div>
-        <div className="bg-gray-100 p-4 rounded-lg shadow-md">
-          <AddPhotoForm onAddPhoto={addPhoto} />
-        </div>
-      </div>
+        <Grid container spacing={6} p={6}>
+          <Grid item xs={12} md={8}>
+            <Box bgcolor="gray.100" p={4} borderRadius="lg" boxShadow="md">
+              <PhotoGallery photos={photos} onDelete={deletePhoto} onEdit={showEditForm} />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box bgcolor="gray.100" p={4} borderRadius="lg" boxShadow="md">
+              <AddPhotoForm onAddPhoto={addPhoto} />
+            </Box>
+          </Grid>
+        </Grid>
 
-      {editModalVisible && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <EditPhotoForm
-            photo={editPhoto}
-            onSaveEdit={saveEdit}
-            onClose={hideEditForm}
-          />
-        </div>
-      )}
+        {editModalVisible && (
+          <Box
+            position="fixed"
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            bgcolor="rgba(0, 0, 0, 0.5)"
+          >
+            <EditPhotoForm photo={editPhoto} onSaveEdit={saveEdit} onClose={hideEditForm} />
+          </Box>
+        )}
 
-      <footer className="mt-6 bg-gray-200 p-2 text-center">
-        <p>Todos los derechos reservados &copy; 2023 Galería de Fotos</p>
-      </footer>
-    </div>
+        <Box mt={6} bgcolor="gray.200" p={2} textAlign="center">
+          <Typography>
+            Todos los derechos reservados &copy; 2023 Galería de Fotos
+          </Typography>
+        </Box>
+      </Box>
+    </Container>
   );
 }
+ 
 
 export default App;

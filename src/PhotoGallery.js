@@ -1,20 +1,18 @@
 import React from 'react';
 import Photo from './Photo';
+import { Grid } from '@mui/material';
 
 
 
 const PhotoGallery = ({ photos, onDelete, onEdit }) => {
   return (
-    <div className="gallery grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <Grid container spacing={2} className="gallery">
       {photos.map((photo) => (
-        <Photo
-          key={photo.id}
-          photo={photo}
-          onDelete={onDelete}
-          onEdit={onEdit}
-        />
+        <Grid item xs={12} md={9} lg={6} key={photo.id}>
+          <Photo photo={photo} onDelete={onDelete} onEdit={onEdit} />
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };
 

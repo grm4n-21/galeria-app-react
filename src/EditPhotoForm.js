@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Modal, Typography, TextField, Button, TextareaAutosize, Box } from '@mui/material';
 
 const EditPhotoForm = ({ photo, onSaveEdit, onClose }) => {
   const [title, setTitle] = useState(photo.title);
@@ -20,48 +21,50 @@ const EditPhotoForm = ({ photo, onSaveEdit, onClose }) => {
   };
 
   return (
-    <div className="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="modal-content bg-white p-6 rounded shadow-lg">
-        <span
-          className="close cursor-pointer absolute top-2 right-2"
-          onClick={onClose}
-        >
+    <Modal open={true} onClose={onClose}>
+    <Box className="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <Box className="modal-content bg-white p-6 rounded shadow-lg">
+        <span className="close cursor-pointer absolute top-2 right-2" onClick={onClose}>
           &times;
         </span>
-        <h2 className="text-2xl font-bold mb-2">Editar Foto</h2>
+        <Typography variant="h5" fontWeight="bold" mb={2}>
+          Editar Foto
+        </Typography>
         <form onSubmit={handleSubmit}>
           <input type="hidden" value={photo.id} />
           <div className="mb-2">
             <label htmlFor="edit-title">Título:</label>
-            <input
+            <TextField
               type="text"
               id="edit-title"
               value={title}
               onChange={handleTitleChange}
-              className="block w-full border rounded px-4 py-2"
+              fullWidth
+              variant="outlined"
               required
             />
           </div>
           <div className="mb-2">
             <label htmlFor="edit-description">Descripción:</label>
-            <textarea
+            <TextareaAutosize
               id="edit-description"
               value={description}
               onChange={handleDescriptionChange}
-              className="block w-full border rounded px-4 py-2"
+              rowsMin={3}
+              fullWidth
+              variant="outlined"
+              placeholder="Escribe una descripción..."
               required
             />
           </div>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white rounded px-4 py-2"
-          >
+          <Button type="submit" variant="contained" color="primary">
             Guardar
-          </button>
+          </Button>
         </form>
-      </div>
-    </div>
-  );
-};
+      </Box>
+    </Box>
+  </Modal>
+);
+}
 
 export default EditPhotoForm;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Typography, TextField, Button, TextareaAutosize } from '@mui/material';
 
 const AddPhotoForm = ({ onAddPhoto }) => {
   const [title, setTitle] = useState('');
@@ -29,26 +30,31 @@ const AddPhotoForm = ({ onAddPhoto }) => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-2">Agregar Nueva Foto</h2>
+      <Typography variant="h5" fontWeight="bold" mb={2}>
+        Agregar Nueva Foto
+      </Typography>
       <form onSubmit={handleSubmit}>
         <div className="mb-2">
           <label htmlFor="title">Título:</label>
-          <input
+          <TextField
             type="text"
             id="title"
             value={title}
             onChange={handleTitleChange}
-            className="block w-full border rounded px-4 py-2"
+            fullWidth
+            variant="outlined"
             required
           />
         </div>
         <div className="mb-2">
           <label htmlFor="description">Descripción:</label>
-          <textarea
+          <TextareaAutosize
             id="description"
             value={description}
             onChange={handleDescriptionChange}
-            className="block w-full border rounded px-4 py-2"
+            rowsMin={3}
+            fullWidth
+            placeholder="Escribe una descripción..."
             required
           />
         </div>
@@ -63,15 +69,16 @@ const AddPhotoForm = ({ onAddPhoto }) => {
             required
           />
         </div>
-        <button
+        <Button
           type="submit"
-          className="bg-blue-500 text-white rounded px-4 py-2"
+          variant="contained"
+          color="primary"
         >
           Agregar Foto
-        </button>
+        </Button>
       </form>
     </div>
   );
-};
+}
 
 export default AddPhotoForm;

@@ -27,10 +27,12 @@ const Photo = ({ photo, onDelete, onEdit }) => {
         alt={photo.title}
         height="200"
         style={{ objectFit: 'cover' }}
+       
       />
       {hovered && (
         <Box className="edit-delete-buttons absolute top-2 right-2">
           <Button
+          
             variant="contained"
             color="primary"
             size="small"

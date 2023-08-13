@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Modal, Typography, TextField, Button, TextareaAutosize, Box } from '@mui/material';
-
+import { Modal, Typography, TextField, Button, TextareaAutosize, Box, IconButton, colors } from '@mui/material';
+import CloseIcon from '@mui/icons-material/CloseIcon'
 const EditPhotoForm = ({ photo, onSaveEdit, onClose }) => {
   const [title, setTitle] = useState(photo.title);
   const [description, setDescription] = useState(photo.description);
@@ -24,9 +24,9 @@ const EditPhotoForm = ({ photo, onSaveEdit, onClose }) => {
     <Modal open={true} onClose={onClose}>
     <Box className="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <Box className="modal-content bg-white p-6 rounded shadow-lg">
-        <span className="close cursor-pointer absolute top-2 right-2" onClick={onClose}>
-          &times;
-        </span>
+       <IconButton  onClick={onClose}>
+         <CloseIcon /> 
+       </IconButton> 
         <Typography variant="h5" fontWeight="bold" mb={2}>
           Editar Foto
         </Typography>
@@ -44,8 +44,8 @@ const EditPhotoForm = ({ photo, onSaveEdit, onClose }) => {
               required
             />
           </div>
-          <div className="mb-2">
-            <label htmlFor="edit-description">Descripción:</label>
+          <div className="mb-2 ">
+            <label htmlFor="edit-description">Descripción: <br/> </label>
             <TextareaAutosize
               id="edit-description"
               value={description}
@@ -53,7 +53,7 @@ const EditPhotoForm = ({ photo, onSaveEdit, onClose }) => {
               rowsMin={3}
               fullWidth
               variant="outlined"
-              placeholder="Escribe una descripción..."
+              placeholder=" Escribe una descripción... "
               required
             />
           </div>

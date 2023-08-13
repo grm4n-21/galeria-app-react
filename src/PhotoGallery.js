@@ -8,7 +8,7 @@ const PhotoGallery = ({ photos, onDelete, onEdit }) => {
   return (
     <Grid container spacing={2} className="gallery">
       {photos.map((photo) => (
-        <Grid item xs={12} md={9} lg={6} key={photo.id}>
+        <Grid item xs={16} md={8} lg={8} key={photo.id}>
           <Photo photo={photo} onDelete={onDelete} onEdit={onEdit} />
         </Grid>
       ))}
